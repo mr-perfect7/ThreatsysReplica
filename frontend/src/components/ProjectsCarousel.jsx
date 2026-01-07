@@ -5,6 +5,12 @@ import { getProjects } from "@/services/api";
 export default function ProjectsCarousel() {
   const [projects, setProjects] = useState([]);
   const [index, setIndex] = useState(0);
+const COLOR_MAP = {
+  "bg-green-600": "bg-green-600",
+  "bg-blue-600": "bg-blue-600",
+  "bg-purple-600": "bg-purple-600",
+  "bg-red-600": "bg-red-600",
+};
 
   useEffect(() => {
     getProjects().then(setProjects).catch(console.error);
@@ -63,10 +69,13 @@ export default function ProjectsCarousel() {
               }}
             >
               {projects.map((item) => (
-                <div
-                  key={item._id}
-                  className={`min-w-[300px] h-[220px] rounded-xl ${item.color} p-6 flex flex-col justify-between shadow-xl`}
-                >
+              <div
+                key={item._id}
+                className={`min-w-[300px] h-[220px] rounded-xl p-6 flex flex-col justify-between shadow-xl ${
+                  COLOR_MAP[item.color] || "bg-gray-700"
+                }`}
+              >
+
                   <p className="text-lg font-semibold">
                     {item.title}
                   </p>

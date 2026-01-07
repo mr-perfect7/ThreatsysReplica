@@ -1,5 +1,6 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-// const  BASE_URL = `http://localhost:5000/api/`
+// const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = "https://threatsysreplica.onrender.com/api"
+
 export const getHome = async () => {
   const res = await fetch(`${BASE_URL}/home`, { cache: "no-store" });
   return res.json();
@@ -30,14 +31,8 @@ export const submitContact = async (data) => {
 };
 
 export const getProjects = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/projects`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch projects");
-  }
-
+  const res = await fetch(`${BASE_URL}/projects`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch projects");
   return res.json();
 };
+

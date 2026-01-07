@@ -13,10 +13,14 @@ const app = express();
 // app.use(cors());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000", // local dev
+      "https://threatsys-replica-jp3c2e5e0-mr-perfect7s-projects.vercel.app" // live frontend
+    ],
     credentials: true,
   })
 );
+
 app.use(express.json());
 
 app.use("/api/home", homeRoutes);
